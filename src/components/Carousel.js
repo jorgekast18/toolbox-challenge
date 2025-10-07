@@ -2,8 +2,6 @@ import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, Dimensions } from 'react-native';
 import VideoPlayer from './VideoPlayer';
 
-const { width } = Dimensions.get('window');
-
 // Size by types thumb or poster
 const POSTER_WIDTH = 320;
 const POSTER_HEIGHT = 480;
