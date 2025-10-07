@@ -19,19 +19,36 @@ export default function CarouselScreen({ navigation }) {
   const { token, doLogout } = useAuth();
   const { fetchCarousels, items, loading } = useCarousels();
 
+  const destroySession = () => {
+    doLogout()
+    navigation.navigate(ROUTES.HOME)
+  }
 
   useEffect(() => {
-    if ( !token || (items.code && items.code === '403')){
-      doLogout()
-      navigation.navigate(ROUTES.HOME)
-      return;
+    if (!token) {
+      destroySession();
+    } else if (items && items.code === '403') {
+      destroySession();
     }
-    fetchCarousels()
+  }, [token, items]);
+
+  useEffect(() => {
+    if (token) {
+      fetchCarousels();
+    }
   }, [token]);
 
   if (loading) {
     return (
       <Loader text={'Cargando Carruseles...'}/>
+    );
+  }
+
+  if (!Array.isArray(items)) {
+    return (
+      <SafeAreaView style={styles.safeArea}>
+        <Loader text={'Error cargando carruseles, por favor inicie sesión nuevamente.'} />
+      </SafeAreaView>
     );
   }
   return (
