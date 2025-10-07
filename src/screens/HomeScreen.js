@@ -8,12 +8,20 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from 'react-native';
+import {
+  useNavigation,
+} from '@react-navigation/native';
 import logo from '../assets/logo.jpeg'
 import useAuth from '../hooks/useAuth';
+import { ROUTES } from '../constants/routes';
 
 export default function HomeScreen() {
   const { token, type, loading, error, auth, doLogout } = useAuth();
+  const navigation = useNavigation()
 
+  const handleGoCarousel = () => {
+    navigation.navigate(ROUTES.CAROUSEL);
+  }
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
@@ -22,8 +30,9 @@ export default function HomeScreen() {
         {token ? (
           <View style={styles.content}>
             <Text style={styles.success}>¡Login exitoso!</Text>
-            <Text style={styles.token}>{token}</Text>
-            <Text style={styles.token}>{type}</Text>
+            <TouchableOpacity style={styles.buttonGoCarousel} onPress={handleGoCarousel}>
+              <Text style={styles.buttonText}>Ver Carrusel</Text>
+            </TouchableOpacity>
             <TouchableOpacity style={styles.buttonLogout} onPress={doLogout}>
               <Text style={styles.buttonText}>Cerrar sesión</Text>
             </TouchableOpacity>
@@ -70,7 +79,7 @@ const styles = StyleSheet.create({
     fontSize: 22,
     fontWeight: '600',
     color: '#2ecc71',
-    marginBottom: 12,
+    marginBottom: 50,
   },
   token: {
     fontSize: 12,
@@ -98,6 +107,17 @@ const styles = StyleSheet.create({
     shadowOffset: { width: 0, height: 8 },
     shadowOpacity: 0.3,
     shadowRadius: 8,
+  },
+  buttonGoCarousel: {
+    backgroundColor: '#e3b91a',
+    paddingVertical: 15,
+    paddingHorizontal: 50,
+    borderRadius: 30,
+    shadowColor: '#c93a28',
+    shadowOffset: { width: 0, height: 8 },
+    shadowOpacity: 0.3,
+    shadowRadius: 8,
+    marginBottom: 10,
   },
   buttonText: {
     fontSize: 18,
