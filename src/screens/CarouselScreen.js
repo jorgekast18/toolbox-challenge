@@ -1,24 +1,25 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
-  Text,
   TouchableOpacity,
   View,
   StyleSheet,
   Image,
-  ActivityIndicator,
+  ScrollView,
 } from 'react-native';
 
 import backButton from '../assets/back_button.png';
 import useCarousels from '../hooks/useCarousels';
 import useAuth from '../hooks/useAuth';
 import { ROUTES } from '../constants/routes';
+import Loader from '../components/Loader';
+import Carousel from '../components/Carousel';
 
 export default function CarouselScreen({ navigation }) {
   const { token, doLogout } = useAuth();
   const { fetchCarousels, items, loading } = useCarousels();
   useEffect(() => {
-    if( !token ) {
+    if( !token || (items.code && items.code === "E403") ) {
       navigation.navigate(ROUTES.HOME)
       doLogout();
       return;
@@ -29,10 +30,7 @@ export default function CarouselScreen({ navigation }) {
 
   if (loading) {
     return (
-      <SafeAreaView style={[styles.safeArea, styles.center]}>
-        <ActivityIndicator size="large" color="#4A90E2" />
-        <Text style={styles.loadingText}>Cargando carruseles...</Text>
-      </SafeAreaView>
+      <Loader text={'Cargando Carruseles...'}/>
     );
   }
   return (
@@ -42,9 +40,11 @@ export default function CarouselScreen({ navigation }) {
           <Image source={backButton} style={styles.back} />
         </TouchableOpacity>
       </View>
-      <View style={styles.container}>
-        <Text style={styles.title}>Welcome Carousel</Text>
-      </View>
+      <ScrollView contentContainerStyle={styles.scrollContainer}>
+        {items.map((carousel) => (
+          <Carousel key={carousel.title} title={carousel.title} items={carousel.items} type={carousel.type} />
+        ))}
+      </ScrollView>
     </SafeAreaView>
   );
 }
@@ -62,11 +62,6 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderBottomColor: '#ddd',
   },
-  center: {
-    justifyContent: 'center',
-    alignItems: 'center',
-    padding: 24,
-  },
   backButton: {
     width: 30,
     height: 30,
@@ -83,12 +78,6 @@ const styles = StyleSheet.create({
     fontWeight: '600',
     color: '#3a3a3a',
   },
-  container: {
-    flex: 1,
-    padding: 24,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
   title: {
     fontSize: 32,
     fontWeight: '700',
@@ -98,10 +87,8 @@ const styles = StyleSheet.create({
     width: 30,
     height: 30,
   },
-  loadingText: {
-    marginTop: 16,
-    fontSize: 16,
-    color: '#4A90E2',
-    fontWeight: '600',
+  scrollContainer: {
+    paddingVertical: 20,
+    paddingHorizontal: 12,
   },
 });
