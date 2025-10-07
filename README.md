@@ -6,7 +6,7 @@ The project was build with React Native V0.81.0.
 
 # Getting Started
 
-> **Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
+> ** ⚠ Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
 ## Install dependencies.
 
@@ -20,7 +20,7 @@ npm install
 yarn install
 ```
 
-## Start Metro.
+## Start Metro. 🚀
 
 After setup your environment, you can start Metro.
 First, you will need to run **Metro**, the JavaScript build tool for React Native.
