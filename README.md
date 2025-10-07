@@ -8,6 +8,14 @@ The project was build with React Native V0.81.0.
 
 > **⚠ Note**: Make sure you have completed the [Set Up Your Environment](https://reactnative.dev/docs/set-up-your-environment) guide before proceeding.
 
+# Versions of tools
+
+- React Native: 0.81.4
+- Node: 22.15.0
+- Yarn: 1.22.22
+- ruby: 3.4.1 (2024-12-25 revision 48d4efcb85) +PRISM [arm64-darwin24]
+- cocoapod: 1.16.2
+
 ## Install dependencies.
 
 You need install project dependencies. In the root of project exec.
