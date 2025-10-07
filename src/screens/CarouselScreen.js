@@ -18,13 +18,14 @@ import Carousel from '../components/Carousel';
 export default function CarouselScreen({ navigation }) {
   const { token, doLogout } = useAuth();
   const { fetchCarousels, items, loading } = useCarousels();
+
+
   useEffect(() => {
-    if( !token || (items.code && items.code === "E403") ) {
+    if ( !token || (items.code && items.code === '403')){
+      doLogout()
       navigation.navigate(ROUTES.HOME)
-      doLogout();
       return;
     }
-
     fetchCarousels()
   }, [token]);
 
@@ -41,7 +42,7 @@ export default function CarouselScreen({ navigation }) {
         </TouchableOpacity>
       </View>
       <ScrollView contentContainerStyle={styles.scrollContainer}>
-        {items.map((carousel) => (
+        {items && items.map((carousel) => (
           <Carousel key={carousel.title} title={carousel.title} items={carousel.items} type={carousel.type} />
         ))}
       </ScrollView>
