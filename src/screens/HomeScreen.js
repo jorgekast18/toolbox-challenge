@@ -16,7 +16,7 @@ import useAuth from '../hooks/useAuth';
 import { ROUTES } from '../constants/routes';
 
 export default function HomeScreen() {
-  const { token, type, loading, error, auth, doLogout } = useAuth();
+  const { token, loading, error, auth, doLogout } = useAuth();
   const navigation = useNavigation()
 
   const handleGoCarousel = () => {
