@@ -9,7 +9,6 @@ export default function useAuth() {
   const { token, type, loading, error } = useSelector(state => state.auth);
 
   async function auth() {
-    console.log('va a iniciar la puta sesion sapo perro');
     dispatch(loginStart());
     try {
       const data = await callEndpoint(login());
