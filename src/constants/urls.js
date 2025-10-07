@@ -1,0 +1,1 @@
+export const loginUrl = 'https://echo-serv.tbxnet.com/v1/mobile/auth';
