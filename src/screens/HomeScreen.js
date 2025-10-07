@@ -1,4 +1,5 @@
 import React from 'react';
+import { Image } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import {
   Text,
@@ -8,6 +9,7 @@ import {
   TouchableOpacity,
   ActivityIndicator
 } from 'react-native';
+import logo from '../assets/logo.jpeg'
 import useAuth from '../hooks/useAuth';
 
 export default function HomeScreen() {
@@ -16,6 +18,7 @@ export default function HomeScreen() {
   return (
     <SafeAreaView style={styles.safeArea}>
       <View style={styles.container}>
+        <Image style={styles.image} source={logo} />
         <Text style={styles.title}>Challenge ToolBox</Text>
         {token ? (
           <View style={styles.content}>
@@ -46,7 +49,7 @@ export default function HomeScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#F4F7FA',
+    backgroundColor: '#ffffff',
   },
   container: {
     flex: 1,
@@ -108,5 +111,11 @@ const styles = StyleSheet.create({
     fontWeight: '500',
     textAlign: 'center',
     paddingHorizontal: 20,
+  },
+  logo: {
+    width: 150,
+    height: 150,
+    marginBottom: 24,
+    resizeMode: 'contain',
   },
 });
