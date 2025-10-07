@@ -1,18 +1,19 @@
 import React from 'react';
 import { SafeAreaView } from 'react-native-safe-area-context';
-import {
-  Text,
-  View,
-  StyleSheet,
-} from 'react-native';
+import { Text, TouchableOpacity, View, StyleSheet, Image } from 'react-native';
 
-export default function CarouselScreen() {
+import backButton from '../assets/back_button.png';
+
+export default function CarouselScreen({ navigation }) {
   return (
     <SafeAreaView style={styles.safeArea}>
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => navigation.goBack()} style={styles.backButton}>
+          <Image source={backButton} style={styles.back} />
+        </TouchableOpacity>
+      </View>
       <View style={styles.container}>
-
-        <Text style={styles.title}>Carousel Screen</Text>
-
+        <Text style={styles.title}>Welcome Carousel</Text>
       </View>
     </SafeAreaView>
   );
@@ -21,7 +22,31 @@ export default function CarouselScreen() {
 const styles = StyleSheet.create({
   safeArea: {
     flex: 1,
-    backgroundColor: '#ffffff',
+    backgroundColor: '#F4F7FA',
+  },
+  header: {
+    flexDirection: 'row',
+    height: 60,
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    paddingHorizontal: 15,
+    borderBottomColor: '#ddd',
+  },
+  backButton: {
+    width: 30,
+    height: 30,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  backButtonText: {
+    fontSize: 30,
+    fontWeight: '700',
+    color: 'black',
+  },
+  headerTitle: {
+    fontSize: 20,
+    fontWeight: '600',
+    color: '#3a3a3a',
   },
   container: {
     flex: 1,
@@ -33,6 +58,9 @@ const styles = StyleSheet.create({
     fontSize: 32,
     fontWeight: '700',
     color: '#3a3a3a',
-    marginBottom: 40,
+  },
+  back: {
+    width: 30,
+    height: 30,
   },
 });
