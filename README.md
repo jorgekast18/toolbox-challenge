@@ -72,12 +72,12 @@ yarn ios
 
 ### Android
 
-[androidLogin](images/android1.png)
-[androidHome](images/android2.png)
-[androidCarousel](images/android3.png)
+![androidLogin](images/android1.png)
+![androidHome](images/android2.png)
+![androidCarousel](images/android3.png)
 
 ### iOS
 
-[iosLogin](images/iOS1.PNG)
-[iosHome](images/iOS2.PNG)
-[iosCarousel](images/iOS3.PNG)
+![iosLogin](images/iOS1.PNG)
+![iosHome](images/iOS2.PNG)
+![iosCarousel](images/iOS3.PNG)
