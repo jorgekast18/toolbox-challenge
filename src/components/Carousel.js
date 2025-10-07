@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, Text, FlatList, Image, StyleSheet, Dimensions } from 'react-native';
+import VideoPlayer from './VideoPlayer';
 
 const { width } = Dimensions.get('window');
 
@@ -29,6 +30,7 @@ export default function Carousel({ title, items, type = 'poster' }) {
             <Text style={styles.itemTitle} numberOfLines={1}>
               {item.title}
             </Text>
+            <VideoPlayer videoUrl={item.videoUrl} />
           </View>
         )}
         showsHorizontalScrollIndicator={false}
